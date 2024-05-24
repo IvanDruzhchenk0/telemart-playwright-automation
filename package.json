@@ -1,0 +1,22 @@
+{
+  "name": "brain-playwright-automation",
+  "version": "1.0.0",
+  "description": "Playwright + TS automation pet-project",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IvanDruzhchenk0/brain-playwright-automation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IvanDruzhchenk0/brain-playwright-automation/issues"
+  },
+  "homepage": "https://github.com/IvanDruzhchenk0/brain-playwright-automation#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.44.1",
+    "@types/node": "^20.12.12"
+  }
+}
