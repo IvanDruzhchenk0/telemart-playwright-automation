@@ -1,5 +1,5 @@
 {
-  "name": "brain-playwright-automation",
+  "name": "telemart-playwright-automation",
   "version": "1.0.0",
   "description": "Playwright + TS automation pet-project",
   "main": "index.js",
