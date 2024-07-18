@@ -7,7 +7,7 @@ export class FilteringResultsPage {
     this.page = page;
   }
 
-  async clickOnItem(number: number){
+  async clickOnNthItem(number: number){
     await this.page.locator('//*[@id="catalogList"]//*[@class="product-item__title"]/a').nth(number).click();
   }
 }

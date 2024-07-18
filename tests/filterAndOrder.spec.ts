@@ -45,7 +45,7 @@ await catalogPage.openFilterOptions('Час відгуку');
 await catalogPage.applyFilter('filterOption301-1261-24353');
 await catalogPage.submitFiltering();
 
-await filteringResultsPage.clickOnItem(1);
+await filteringResultsPage.clickOnNthItem(1);
 
 await productPage.clickBuyButton();
 await productPage.clickCheckoutButton();
