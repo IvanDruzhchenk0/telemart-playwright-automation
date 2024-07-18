@@ -41,8 +41,8 @@ await catalogPage.openFilterOptions('Вбудовані колонки');
 await catalogPage.applyFilter('filterOption301-1979-32707');
 await catalogPage.openFilterOptions('Тип монітору');
 await catalogPage.applyFilter('filterOption301-1596-26795');
-await catalogPage.openFilterOptions('Колір');
-await catalogPage.applyFilter('filterOption301-877-24693');
+await catalogPage.openFilterOptions('Час відгуку');
+await catalogPage.applyFilter('filterOption301-1261-24353');
 await catalogPage.submitFiltering();
 
 await filteringResultsPage.clickOnItem(1);

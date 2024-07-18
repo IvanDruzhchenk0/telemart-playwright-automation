@@ -8,6 +8,6 @@ export class FilteringResultsPage {
   }
 
   async clickOnItem(number: number){
-    await this.page.locator('//*[@id="catalogList"]//*[@class="product-item__title"]').nth(number).click();
+    await this.page.locator('//*[@id="catalogList"]//*[@class="product-item__title"]/a').nth(number).click();
   }
 }
