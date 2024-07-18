@@ -1,5 +1,5 @@
 {
-  "name": "brain-playwright-automation",
+  "name": "telemart-playwright-automation",
   "version": "1.0.0",
   "description": "Playwright + TS automation pet-project",
   "main": "index.js",
@@ -18,5 +18,9 @@
   "devDependencies": {
     "@playwright/test": "^1.44.1",
     "@types/node": "^20.12.12"
+  },
+  "dependencies": {
+    "playwright": "^1.45.1",
+    "typescript": "^5.5.3"
   }
 }
