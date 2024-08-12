@@ -7,7 +7,10 @@ export class FilteringResultsPage {
     this.page = page;
   }
 
-  async clickOnNthItem(number: number){
-    await this.page.locator('//*[@id="catalogList"]//*[@class="product-item__title"]/a').nth(number).click();
+  async clickOnItemInList(number: number) {
+    await this.page
+      .locator('//*[@id="catalogList"]//*[@class="product-item__title"]/a')
+      .nth(number)
+      .click();
   }
 }

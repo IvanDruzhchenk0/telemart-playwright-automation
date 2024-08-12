@@ -13,9 +13,9 @@ export class ProductPage {
 
   async clickCheckoutButton() {
     await this.page
-    .locator(
-      '//*[@class="bag-total"]//a[contains(text(), "Оформити замовлення")]'
-    )
-    .click();
+      .locator(
+        '//*[@class="bag-total"]//a[contains(text(), "Оформити замовлення")]'
+      )
+      .click();
   }
 }

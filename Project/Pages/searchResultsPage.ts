@@ -8,6 +8,10 @@ export class SearchResultsPage {
   }
 
   async clickOnSearchResult(searchInput: string) {
-    await this.page.locator(`//*[@class="product-item__title"]/a[contains(text(), '${searchInput}')]`).click();
-}
+    await this.page
+      .locator(
+        `//*[@class="product-item__title"]/a[contains(text(), '${searchInput}')]`
+      )
+      .click();
+  }
 }

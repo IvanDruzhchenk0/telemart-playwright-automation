@@ -17,14 +17,20 @@ export class HomePage {
       .click();
   }
 
-  async searchWithSearchBar(input: string){
+  async searchWithSearchBar(input: string) {
     await this.page.locator('[name="search_que"]').fill(input);
     await this.page.locator('[name="search_que"]').press("Enter");
   }
 
-  async filterByCatalog(category: string, subcategoryLink: string){
-    await this.page.locator(`//*[@class="content"]//span[contains(text(), "${category}")]`).hover();
-    await this. page.locator(`//*[@class="content"]//a[contains(@href, "${subcategoryLink}")]`).click();
+  async filterByCatalog(category: string, subcategoryLink: string) {
+    await this.page
+      .locator(`//*[@class="content"]//span[contains(text(), "${category}")]`)
+      .hover();
+    await this.page
+      .locator(
+        `//*[@class="content"]//a[contains(@href, "${subcategoryLink}")]`
+      )
+      .click();
   }
 
   async getListTextContents(className: string) {
