@@ -6,6 +6,8 @@ import { HomePage } from '../Pages/homePage';
 import { ProductPage } from '../Pages/productPage';
 import { PromotionProductPage } from '../Pages/promotionProductPage';
 import { SearchResultsPage } from '../Pages/searchResultsPage';
+import { HeaderComponent } from '../Components/headerComponent';
+import { ComparisonPage } from '../Pages/comparisonPage';
 
 type Pages = {
     catalogPage: CatalogPage;
@@ -15,10 +17,15 @@ type Pages = {
     productPage: ProductPage;
     promotionProductPage: PromotionProductPage;
     searchResultsPage: SearchResultsPage;
+    comparisonPage: ComparisonPage;
+}
+
+type Components = {
+    headerComponent: HeaderComponent;
 }
 
 
-export const test = base.extend<Pages>({ 
+export const test = base.extend<Pages & Components> ({ 
     catalogPage: ({page}, use) => {
         const catalogPage = new CatalogPage(page);
         use(catalogPage);
@@ -46,6 +53,14 @@ export const test = base.extend<Pages>({
     searchResultsPage: ({page}, use) => {
         const searchResultsPage = new SearchResultsPage(page);
         use(searchResultsPage);
+    },
+    headerComponent: ({page}, use) => {
+        const headerComponent = new HeaderComponent(page);
+        use(headerComponent);
+    }, 
+    comparisonPage: ({page}, use) => {
+        const comparisonPage = new ComparisonPage(page);
+        use(comparisonPage);
     }
 
 })

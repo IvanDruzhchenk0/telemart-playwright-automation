@@ -24,11 +24,11 @@ export class HomePage {
 
   async filterByCatalog(category: string, subcategoryLink: string) {
     await this.page
-      .locator(`//*[@class="content"]//span[contains(text(), "${category}")]`)
+      .locator(`//*[@class="content"]//span[text()="${category}"]`)
       .hover();
     await this.page
       .locator(
-        `//*[@class="content"]//a[contains(@href, "${subcategoryLink}")]`
+        `//*[@class="content"]//a[@href="${subcategoryLink}"]`
       )
       .click();
   }

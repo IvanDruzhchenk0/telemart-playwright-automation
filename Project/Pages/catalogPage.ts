@@ -1,4 +1,4 @@
-import { Page, expect } from "@playwright/test";
+import { Page } from "@playwright/test";
 
 export class CatalogPage {
   page: Page;
@@ -42,5 +42,21 @@ export class CatalogPage {
         '//div[@class="filter-option-apply"]/a[contains(text(), "Показати")]'
       )
       .click();
+  }
+
+  async compareNthItem(buttonNumbers: Array<number>) {
+    for (const button of buttonNumbers) {
+      await this.page
+        .locator(
+          '//div[@class="product-btns"]/button[contains(@class, "btn_compare")]'
+        )
+        .nth(button)
+        .click();
+      await this.page
+        .locator(
+          `//div[contains(text(), "Товар додан")]/parent::*/preceding-sibling::*/button`
+        )
+        .click();
+    }
   }
 }
