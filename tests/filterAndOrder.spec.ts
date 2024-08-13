@@ -23,20 +23,26 @@ test("Order product with filtering", async ({
   catalogPage,
   filteringResultsPage,
   productPage,
-  checkoutPage,
+  checkoutPage
 }) => {
   const listOfFilterOptions = [
-    "Вбудовані колонки",
+    "Співвідношення сторін",
     "Тип монітору",
     "Час відгуку",
   ];
   const listOfFilters = [
     "filterOption301-1013-22721",
     "filterOption301-1012-22707",
-    "filterOption301-1979-32707",
+    "filterOption301-1015-22736",
     "filterOption301-1596-26795",
     "filterOption301-1261-24353",
   ];
+  const expectedParameters = [
+    {'Діагональ': '31.5'},
+    {'Роздільна здатність': '1920x1080'},
+    {'Час відгуку': '4 мс'},
+    {'Співвідношення сторін': '16:9'}
+  ]
 
   await homePage.navigateToBaseURL();
   await homePage.clickOnCityModal("Так, вірно");
@@ -49,9 +55,13 @@ test("Order product with filtering", async ({
   await catalogPage.openMultipleFilterOptions(listOfFilterOptions);
   await catalogPage.applyMultipleFilters(listOfFilters);
   await catalogPage.submitFiltering();
-
+  
+  // перевірка на те, що всі 5 фільтрів активні
+  await filteringResultsPage.checkFiltersApplication(5);
   await filteringResultsPage.clickOnItemInList(0);
 
+  // перевірка самого товару на відповідність фільтрам
+  await productPage.checkParameter(expectedParameters);
   await productPage.clickBuyButton();
   await productPage.clickCheckoutButton();
 

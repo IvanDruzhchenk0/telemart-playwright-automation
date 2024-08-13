@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 
 export class HomePage {
   page: Page;
@@ -15,6 +15,7 @@ export class HomePage {
     await this.page
       .locator(`//*[@role="tooltip"]//button[contains(text(), "${answer}")]`)
       .click();
+    await expect(this.page.locator('//div[@class="header-select-city"]/button/span')).toHaveText('Київ');
   }
 
   async searchWithSearchBar(input: string) {

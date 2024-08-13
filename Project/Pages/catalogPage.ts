@@ -26,13 +26,13 @@ export class CatalogPage {
 
   async applyFilter(filterID: string) {
     await this.page.locator(`label[for="${filterID}"]`).check();
-    await this.page.locator(`label[for="${filterID}"]`).isChecked();
+    await expect(this.page.locator(`label[for="${filterID}"]`)).toBeChecked();
   }
 
   async applyMultipleFilters(listOfFilters: Array<string>) {
     for (const filter of listOfFilters) {
       await this.page.locator(`label[for="${filter}"]`).check();
-      await this.page.locator(`label[for="${filter}"]`).isChecked();
+      await expect(this.page.locator(`label[for="${filter}"]`)).toBeChecked();
     }
   }
 
