@@ -1,11 +1,11 @@
 import { test as base } from '@playwright/test';
-import { CatalogPage } from '../Pages/catalogPage';
-import { CheckOutPage } from '../Pages/checkoutPage';
-import { FilteringResultsPage } from '../Pages/filteringResultsPage';
-import { HomePage } from '../Pages/homePage';
-import { ProductPage } from '../Pages/productPage';
-import { PromotionProductPage } from '../Pages/promotionProductPage';
-import { SearchResultsPage } from '../Pages/searchResultsPage';
+import { CatalogPage } from '../Pages/CatalogPage';
+import { CheckOutPage } from '../Pages/CheckoutPage';
+import { FilteringResultsPage } from '../Pages/FilteringResultsPage';
+import { HomePage } from '../Pages/HomePage';
+import { ProductPage } from '../Pages/ProductPage';
+import { PromotionPage } from '../Pages/PromotionPage';
+import { SearchResultsPage } from '../Pages/SearchResultsPage';
 
 type Pages = {
     catalogPage: CatalogPage;
@@ -13,7 +13,7 @@ type Pages = {
     filteringResultsPage: FilteringResultsPage;
     homePage: HomePage;
     productPage: ProductPage;
-    promotionProductPage: PromotionProductPage;
+    promotionPage: PromotionPage;
     searchResultsPage: SearchResultsPage;
 }
 
@@ -39,8 +39,8 @@ export const test = base.extend<Pages>({
         const productPage = new ProductPage(page);
         use(productPage);
     },
-    promotionProductPage: ({page}, use) => {
-        const promotionProductPage = new PromotionProductPage(page);
+    promotionPage: ({page}, use) => {
+        const promotionProductPage = new PromotionPage(page);
         use(promotionProductPage);
     },
     searchResultsPage: ({page}, use) => {

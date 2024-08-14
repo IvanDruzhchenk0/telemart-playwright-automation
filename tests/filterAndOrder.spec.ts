@@ -17,45 +17,43 @@
 //   --- ім'я
 
 import { test } from "../Project/Fixtures/fixturePages";
+import { Filters, FilterOptions } from "../Project/Pages/CatalogPage";
 
 test("Order product with filtering", async ({
   homePage,
   catalogPage,
   filteringResultsPage,
   productPage,
-  checkoutPage
+  checkoutPage,
 }) => {
-  const listOfFilterOptions = [
-    "Співвідношення сторін",
-    "Тип монітору",
-    "Час відгуку",
-  ];
-  const listOfFilters = [
-    "filterOption301-1013-22721",
-    "filterOption301-1012-22707",
-    "filterOption301-1015-22736",
-    "filterOption301-1596-26795",
-    "filterOption301-1261-24353",
+  const filterOptions = [
+    FilterOptions.AspectRatio,
+    FilterOptions.ResponseTime,
+    FilterOptions.Type,
   ];
   const expectedParameters = [
-    {'Діагональ': '31.5'},
-    {'Роздільна здатність': '1920x1080'},
-    {'Час відгуку': '4 мс'},
-    {'Співвідношення сторін': '16:9'}
-  ]
+    { Діагональ: "31.5" },
+    { "Роздільна здатність": "1920x1080" },
+    { "Час відгуку": "4 мс" },
+    { "Співвідношення сторін": "16:9" },
+  ];
+  const listOfFilters = [
+    Filters.DiagonalSelection,
+    Filters.MonitorTypeSelection,
+    Filters.ResolutionSelection,
+    Filters.ResponseTimeSelection,
+    Filters.AspectRatioSelection,
+  ];
 
   await homePage.navigateToBaseURL();
-  await homePage.clickOnCityModal("Так, вірно");
+  await homePage.confirmCityModal();
 
-  await homePage.filterByCatalog(
-    "Монітори та ТВ",
-    "https://telemart.ua/ua/monitors/samsung/"
-  );
+  await homePage.filterByCatalog("Монітори та ТВ", "/ua/monitors/samsung/");
 
-  await catalogPage.openMultipleFilterOptions(listOfFilterOptions);
+  await catalogPage.openMultipleFilterOptions(filterOptions);
   await catalogPage.applyMultipleFilters(listOfFilters);
   await catalogPage.submitFiltering();
-  
+
   // перевірка на те, що всі 5 фільтрів активні
   await filteringResultsPage.checkFiltersApplication(5);
   await filteringResultsPage.clickOnItemInList(0);

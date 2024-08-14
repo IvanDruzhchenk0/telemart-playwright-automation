@@ -15,10 +15,10 @@ test("Order product with filtering", async ({
   homePage,
   searchResultsPage,
   productPage,
-  checkoutPage
+  checkoutPage,
 }) => {
   await homePage.navigateToBaseURL();
-  await homePage.clickOnCityModal("Так, вірно");
+  await homePage.confirmCityModal();
   await homePage.searchWithSearchBar("Ігровий стіл DXRacer");
 
   await searchResultsPage.checkHeader("Ігровий стіл DXRacer");

@@ -20,7 +20,7 @@
     "@types/node": "^20.12.12"
   },
   "dependencies": {
-    "playwright": "^1.45.1",
+    "playwright": "^1.46.0",
     "typescript": "^5.5.3"
   }
 }

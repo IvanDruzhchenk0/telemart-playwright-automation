@@ -7,16 +7,23 @@ export class CheckOutPage {
     this.page = page;
   }
 
-  async checkProductInBucket(productName: string){
-    await expect(this.page.locator(`//div[@class="thanks-page__product"]//div[contains(@class, "product-title") and contains(text(), "${productName}")]`)).toBeVisible();
+  async checkProductInBucket(productName: string) {
+    await expect(
+      this.page.locator(
+        `//div[@class="thanks-page__product"]//div[contains(@class, "product-title") and contains(text(), "${productName}")]`
+      )
+    ).toBeVisible();
   }
 
   async fillSurname(surname: string) {
     await this.page.locator('[id="customerLastname"]').fill(surname);
+    await expect(this.page.locator('[id="customerLastname"]')).toHaveText(
+      surname
+    );
   }
 
   async fillName(name: string) {
     await this.page.locator('[id="customerLastname"]').fill(name);
+    await expect(this.page.locator('[id="customerLastname"]')).toHaveText(name);
   }
-
 }

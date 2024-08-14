@@ -8,14 +8,16 @@ export class HomePage {
   }
 
   async navigateToBaseURL() {
-    await this.page.goto("https://telemart.ua/ua/");
+    await this.page.goto("");
   }
 
-  async clickOnCityModal(answer: string) {
+  async confirmCityModal() {
     await this.page
-      .locator(`//*[@role="tooltip"]//button[contains(text(), "${answer}")]`)
+      .locator(`//*[@role="tooltip"]//button[contains(text(), "Так, вірно")]`)
       .click();
-    await expect(this.page.locator('//div[@class="header-select-city"]/button/span')).toHaveText('Київ');
+    await expect(
+      this.page.locator('//div[@class="header-select-city"]/button/span')
+    ).toHaveText("Київ");
   }
 
   async searchWithSearchBar(input: string) {

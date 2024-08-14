@@ -8,17 +8,14 @@
 import { test } from "../Project/Fixtures/fixturePages";
 import { expect } from "@playwright/test";
 
-test("Order product with filtering", async ({
-  homePage,
-  promotionProductPage,
-}) => {
+test("Order product with filtering", async ({ homePage, promotionPage }) => {
   await homePage.navigateToBaseURL();
-  await homePage.clickOnCityModal("Так, вірно");
+  await homePage.confirmCityModal();
 
   const list = await homePage.getListTextContents("promotions");
   const secondItemTitle = list[1];
   await homePage.clickOnArticleItem(secondItemTitle);
 
-  const pageTitle = await promotionProductPage.getHeaderText();
+  const pageTitle = await promotionPage.getHeaderText();
   expect(pageTitle).toEqual(secondItemTitle);
 });
