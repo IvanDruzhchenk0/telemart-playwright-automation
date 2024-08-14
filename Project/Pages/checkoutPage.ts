@@ -23,7 +23,7 @@ export class CheckOutPage {
   }
 
   async fillName(name: string) {
-    await this.page.locator('[id="customerLastname"]').fill(name);
-    await expect(this.page.locator('[id="customerLastname"]')).toHaveText(name);
+    await this.page.locator('[id="customerFirstname"]').fill(name);
+    await expect(this.page.locator('[id="customerFirstname"]')).toHaveText(name);
   }
 }

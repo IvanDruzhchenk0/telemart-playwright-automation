@@ -27,4 +27,9 @@ export class ProductPage {
       await expect(this.page.locator(`//div[@class="card-block__info-item"]/div[contains(text(), "${Object.values(parameter)}")] | //div[@class="card-block__info-item"]/div/a[contains(text(), "${Object.values(parameter)}")]`)).toBeVisible();
     }
   }
+
+  async getProductName(){
+    const productName = await this.page.locator('h1[class="card-block__title"]').textContent();
+    return productName;
+  }
 }

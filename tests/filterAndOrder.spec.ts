@@ -58,11 +58,13 @@ test("Order product with filtering", async ({
   await filteringResultsPage.checkFiltersApplication(5);
   await filteringResultsPage.clickOnItemInList(0);
 
+  const productName = await productPage.getProductName();
   // перевірка самого товару на відповідність фільтрам
   await productPage.checkParameter(expectedParameters);
   await productPage.clickBuyButton();
   await productPage.clickCheckoutButton();
 
+  await checkoutPage.checkProductInBucket(`${productName}`);
   await checkoutPage.fillSurname("Druzhchenko");
   await checkoutPage.fillName("Ivan");
 });
