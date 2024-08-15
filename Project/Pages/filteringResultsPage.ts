@@ -16,9 +16,6 @@ export class FilteringResultsPage {
 
   async checkFiltersApplication(numberOfFilters: number){
     const filterSelection = this.page.locator('//div[@class="category-main-container"]//div[@class="filter-selected-items__list"]/button');
-    const numberOfSelectedFilters = await filterSelection.count();
-    expect(numberOfFilters).toEqual(numberOfSelectedFilters);
-
-
+    await expect(filterSelection).toHaveCount(numberOfFilters);
   }
 }

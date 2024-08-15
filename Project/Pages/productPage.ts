@@ -30,6 +30,7 @@ export class ProductPage {
 
   async getProductName(){
     const productName = await this.page.locator('h1[class="card-block__title"]').textContent();
-    return productName;
+    const withRemovedSpecialCharacters = productName?.replace(/\w+[A-Z0-9.]\w.*\w+[A-Z0-9".]\w.*/g, '');
+    return withRemovedSpecialCharacters;
   }
 }

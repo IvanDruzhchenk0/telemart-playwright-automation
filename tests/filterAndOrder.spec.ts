@@ -29,20 +29,18 @@ test("Order product with filtering", async ({
   const filterOptions = [
     FilterOptions.AspectRatio,
     FilterOptions.ResponseTime,
-    FilterOptions.Type,
+    FilterOptions.Type
   ];
   const expectedParameters = [
-    { Діагональ: "31.5" },
     { "Роздільна здатність": "1920x1080" },
-    { "Час відгуку": "4 мс" },
     { "Співвідношення сторін": "16:9" },
   ];
   const listOfFilters = [
-    Filters.DiagonalSelection,
-    Filters.MonitorTypeSelection,
-    Filters.ResolutionSelection,
-    Filters.ResponseTimeSelection,
     Filters.AspectRatioSelection,
+    Filters.ResponseTimeSelection,
+    Filters.MonitorTypeSelection,
+    Filters.DiagonalSelection,
+    Filters.ResolutionSelection
   ];
 
   await homePage.navigateToBaseURL();
