@@ -11,34 +11,40 @@ test.describe("Editing user instance", () => {
     );
   });
 
-  test("Edit profile info", async ({ headerComponent, profilePage }) => {
-    const defaultData = [
-      "Dojo",
-      "Sempai",
-      "Ivanich",
-      "01.02.1997",
-      "havierqalol@gmail.com",
-      "0677005517",
-      "0123456789",
-    ];
-    const newData = [
-      "newDojo",
-      "newSempai",
-      "newIvanich",
-      "1990.01.01",
-      "new@gmail.com",
-      "0231232513",
-    ];
-    const newDataWithMobileNumber = [
-      "newDojo",
-      "newSempai",
-      "newIvanich",
-      "01.01.1990",
-      "new@gmail.com",
-      "0677005517",
-      "0231232513",
-    ];
+  const defaultData = [
+    "Dojo",
+    "Sempai",
+    "Ivanich",
+    "01.02.1997",
+    "havierqalol@gmail.com",
+    "0677005517",
+    "0123456789",
+  ];
+  const newData = [
+    "newDojo",
+    "newSempai",
+    "newIvanich",
+    "1990.01.01",
+    "new@gmail.com",
+    "0231232513",
+  ];
+  const newDataWithMobileNumber = [
+    "newDojo",
+    "newSempai",
+    "newIvanich",
+    "01.01.1990",
+    "new@gmail.com",
+    "0677005517",
+    "0231232513",
+  ];
+  const passwords = [
+    process.env.PRODUCTION_PASSWORD!,
+    "Qwerty123!",
+    "Qwerty123!",
+  ];
 
+  test("Edit profile info", async ({ headerComponent, profilePage }) => {
+ 
     await headerComponent.navigateToPage("user/default/index/");
     await profilePage.checkHeader();
     await profilePage.checkTabName(0, TabTitles.PersonalData);
@@ -49,11 +55,6 @@ test.describe("Editing user instance", () => {
   });
 
   test("Edit password", async ({ headerComponent, profilePage }) => {
-    const passwords = [
-      process.env.PRODUCTION_PASSWORD!,
-      "Qwerty123!",
-      "Qwerty123!",
-    ];
 
     await headerComponent.navigateToPage("user/default/index/");
     await profilePage.checkHeader();
