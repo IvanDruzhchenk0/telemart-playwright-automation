@@ -7,7 +7,19 @@ export class ComparisonPage {
     this.page = page;
   }
 
-  async checkSelection(selectionName: string) {
+  async selectFromList(selection: string){
+    await
+      this.page.locator(
+        `//div[@class="content"]//span[@class="selection"]//span[@role="combobox"]`
+      )
+      .click();
+    await 
+    this.page.locator(
+        `//ul[@role="listbox"]//li[contains(text(), "${selection}")]`)
+        .click();
+  }
+
+  async checkListSelection(selectionName: string) {
     await expect(
       this.page.locator(
         `//span[@class="selection"]//span[contains(text(), "${selectionName}")]`
@@ -33,13 +45,13 @@ export class ComparisonPage {
     );
     const numberOfSectionTitles = await sectionTitle.count();
     for (let i = 0; i < numberOfSectionTitles; i++) {
-        await expect(sectionTitle.nth(i)).toHaveText(titles[i]);
+      await expect(sectionTitle.nth(i)).toHaveText(titles[i]);
     }
   }
 
   async expandSections() {
     const expandButton = this.page.locator(
-      '//span[contains(@class, "comparison__section-btn") and text() = "Показати"]'
+      '//span[contains(@class, "comparison__section-btn_open")]'
     );
     const numberOfExtendButtons = await expandButton.count();
     for (let i = 0; i < numberOfExtendButtons; i++) {
@@ -51,27 +63,59 @@ export class ComparisonPage {
     sectionTitles: Array<string>,
     characteristicsPerSection: Array<number>
   ) {
-    let presentedCharacteristics = 0;
-    for (let sectionTitle of sectionTitles) {
+    for (let i = 0; i < characteristicsPerSection.length; i++) {
       let presentedCharacteristics = await this.page
         .locator(
-          `//div[@id="${sectionTitle}"]/div[@class="comparison__table-th"]`
+          `//span[contains(@class, "comparison__section-title") and text() = "${
+            sectionTitles[i]
+          }"]/following::div[contains(@class, "comparison__section-content")][@id = "slider${
+            i + 1
+          }"]/div[@class = "comparison__table-th"]`
         )
         .count();
-      return presentedCharacteristics;
-    }
-    for (let number of characteristicsPerSection) {
-      expect(presentedCharacteristics).toEqual(number);
+      expect(presentedCharacteristics).toEqual(characteristicsPerSection[i]);
     }
   }
 
-  async deleteFromComparison(numberOfItems: number){
-    for(let i = 0; i <=numberOfItems + 1; i++){
-      await this.page.locator('//div[@class="comparison__slider"]//button[contains(@class, "compare_delete")]').first().click();
+  async deleteFromComparison(numberOfItems: number) {
+    for (let i = 0; i < numberOfItems; i++) {
+      await this.page
+        .locator(
+          '//div[@class="comparison__slider"]//button[contains(@class, "compare_delete")]'
+        )
+        .first()
+        .click();
+      await this.page.waitForResponse(
+        (response) =>
+          response.url().includes("https://telemart.ua/ua/cart/summary") &&
+          response.status() === 200 &&
+          response.request().method() === "GET",
+        { timeout: 6000 }
+      );
     }
   }
 
-  async checkVisibility(locator: string){
-    await expect(this.page.locator(locator)).toBeVisible();
+  async checkEmptyPage() {
+    await expect(
+      this.page.locator('//div[@class="not-found__title"]')
+    ).toBeVisible();
   }
+}
+
+export enum SectionTitles {
+  Specifications = "Технічні характеристики",
+  Components = "Комплектація і рекомендації",
+  CPU = "Процесор",
+  GraphicCard = "Відеокарта",
+  Motherboard = "Материнська плата",
+  RAM = "Оперативна пам'ять",
+  SSD = "Внутрішній накопичувач",
+  Cooling = "Охолодження",
+  Additional = "Додатково",
+  GameSupport = "Підтримка ігор"
+}
+
+export enum CategoryToCompare {
+  CPU = "Процесори",
+  PC = "Комп'ютери"
 }

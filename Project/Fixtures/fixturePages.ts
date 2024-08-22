@@ -1,13 +1,14 @@
 import { test as base } from '@playwright/test';
-import { CatalogPage } from '../Pages/catalogPage';
-import { CheckOutPage } from '../Pages/checkoutPage';
-import { FilteringResultsPage } from '../Pages/filteringResultsPage';
-import { HomePage } from '../Pages/homePage';
-import { ProductPage } from '../Pages/productPage';
-import { PromotionProductPage } from '../Pages/promotionProductPage';
-import { SearchResultsPage } from '../Pages/searchResultsPage';
+import { CatalogPage } from '../Pages/CatalogPage';
+import { CheckOutPage } from '../Pages/CheckoutPage';
+import { FilteringResultsPage } from '../Pages/FilteringResultsPage';
+import { HomePage } from '../Pages/HomePage';
+import { ProductPage } from '../Pages/ProductPage';
+import { PromotionPage } from '../Pages/PromotionPage';
+import { SearchResultsPage } from '../Pages/SearchResultsPage';
+import { ComparisonPage } from '../Pages/ComparisonPage';
 import { HeaderComponent } from '../Components/headerComponent';
-import { ComparisonPage } from '../Pages/comparisonPage';
+import { ProfilePage } from '../Pages/ProfilePage';
 
 type Pages = {
     catalogPage: CatalogPage;
@@ -15,9 +16,10 @@ type Pages = {
     filteringResultsPage: FilteringResultsPage;
     homePage: HomePage;
     productPage: ProductPage;
-    promotionProductPage: PromotionProductPage;
+    promotionPage: PromotionPage;
     searchResultsPage: SearchResultsPage;
     comparisonPage: ComparisonPage;
+    profilePage: ProfilePage;
 }
 
 type Components = {
@@ -46,8 +48,8 @@ export const test = base.extend<Pages & Components> ({
         const productPage = new ProductPage(page);
         use(productPage);
     },
-    promotionProductPage: ({page}, use) => {
-        const promotionProductPage = new PromotionProductPage(page);
+    promotionPage: ({page}, use) => {
+        const promotionProductPage = new PromotionPage(page);
         use(promotionProductPage);
     },
     searchResultsPage: ({page}, use) => {
@@ -61,6 +63,10 @@ export const test = base.extend<Pages & Components> ({
     comparisonPage: ({page}, use) => {
         const comparisonPage = new ComparisonPage(page);
         use(comparisonPage);
+    },
+    profilePage: ({page}, use) => {
+        const profilePage = new ProfilePage(page);
+        use(profilePage);
     }
 
 })

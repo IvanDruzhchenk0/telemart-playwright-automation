@@ -17,6 +17,7 @@
 //   --- ім'я
 
 import { test } from "../Project/Fixtures/fixturePages";
+import { Filters, FilterOptions } from "../Project/Pages/CatalogPage";
 
 test("Order product with filtering", async ({
   homePage,
@@ -25,36 +26,43 @@ test("Order product with filtering", async ({
   productPage,
   checkoutPage,
 }) => {
-  const listOfFilterOptions = [
-    "Вбудовані колонки",
-    "Тип монітору",
-    "Час відгуку",
+  const filterOptions = [
+    FilterOptions.AspectRatio,
+    FilterOptions.ResponseTime,
+    FilterOptions.Type
+  ];
+  const expectedParameters = [
+    { "Роздільна здатність": "1920x1080" },
+    { "Співвідношення сторін": "16:9" },
   ];
   const listOfFilters = [
-    "filterOption301-1013-22721",
-    "filterOption301-1012-22707",
-    "filterOption301-1979-32707",
-    "filterOption301-1596-26795",
-    "filterOption301-1261-24353",
+    Filters.AspectRatioSelection,
+    Filters.ResponseTimeSelection,
+    Filters.MonitorTypeSelection,
+    Filters.DiagonalSelection,
+    Filters.ResolutionSelection
   ];
 
   await homePage.navigateToBaseURL();
-  await homePage.clickOnCityModal("Так, вірно");
+  await homePage.confirmCityModal();
 
-  await homePage.filterByCatalog(
-    "Монітори та ТВ",
-    "https://telemart.ua/ua/monitors/samsung/"
-  );
+  await homePage.filterByCatalog("Монітори та ТВ", "/ua/monitors/samsung/");
 
-  await catalogPage.openMultipleFilterOptions(listOfFilterOptions);
+  await catalogPage.openMultipleFilterOptions(filterOptions);
   await catalogPage.applyMultipleFilters(listOfFilters);
   await catalogPage.submitFiltering();
 
+  // перевірка на те, що всі 5 фільтрів активні
+  await filteringResultsPage.checkFiltersApplication(5);
   await filteringResultsPage.clickOnItemInList(0);
 
+  const productName = await productPage.getProductName();
+  // перевірка самого товару на відповідність фільтрам
+  await productPage.checkParameter(expectedParameters);
   await productPage.clickBuyButton();
   await productPage.clickCheckoutButton();
 
+  await checkoutPage.checkProductInBucket(`${productName}`);
   await checkoutPage.fillSurname("Druzhchenko");
   await checkoutPage.fillName("Ivan");
 });

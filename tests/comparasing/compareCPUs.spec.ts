@@ -14,26 +14,26 @@
 
 
 import { test } from "../../Project/Fixtures/fixturePages";
+import { SectionTitles, CategoryToCompare } from "../../Project/Pages/ComparisonPage";
 
-test('test', async ({ homePage, catalogPage, headerComponent, comparisonPage }) => {
+test('Compare CPUs', async ({ homePage, catalogPage, headerComponent, comparisonPage }) => {
 
 const numbersOfItems = [0,1];
-const sectionTitles = ['Технічні характеристики', 'Комплектація і рекомендації'];
+const sectionTitles = [SectionTitles.CPU, SectionTitles.Components];
 const characteristicsPerSection = [19, 3];
-const emptyPageLocator = '//div[@class="not-found__title"]';
 
 await homePage.navigateToBaseURL();
-await homePage.clickOnCityModal("Так, вірно");
+await homePage.confirmCityModal();
 
 await homePage.filterByCatalog(
     "Комплектуючі",
-    "https://telemart.ua/ua/processor/"
+    "/ua/processor/"
   );
 
 await catalogPage.compareNthItem(numbersOfItems);
 
-await headerComponent.clickButton('https://telemart.ua/ua/compare');
-await comparisonPage.checkSelection('Процесори');
+await headerComponent.clickButton('/compare');
+await comparisonPage.checkListSelection(CategoryToCompare.CPU);
 await comparisonPage.checkNumberOfItems(2);
 await comparisonPage.checkNumberOfSections(2);
 await comparisonPage.checkSectionTitles(sectionTitles);
@@ -42,6 +42,6 @@ await comparisonPage.expandSections();
 await comparisonPage.checkExpandedCharacteristics(sectionTitles, characteristicsPerSection);
 
 await comparisonPage.deleteFromComparison(2);
-await comparisonPage.checkVisibility(emptyPageLocator);
+await comparisonPage.checkEmptyPage();
 
 });

@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 
 export class HomePage {
   page: Page;
@@ -8,13 +8,17 @@ export class HomePage {
   }
 
   async navigateToBaseURL() {
-    await this.page.goto("https://telemart.ua/ua/");
+    await this.page.goto("");
   }
 
-  async clickOnCityModal(answer: string) {
+  async confirmCityModal() {
     await this.page
-      .locator(`//*[@role="tooltip"]//button[contains(text(), "${answer}")]`)
+      .locator('//*[@role="tooltip"]//button[contains(text(), "Так, вірно")]')
       .click();
+    await expect(
+      this.page.locator('//div[@class="header-select-city"]/button/span')
+    ).toHaveText("Київ");
+    await expect(this.page.locator('//*[@role="tooltip"]//button[contains(text(), "Так, вірно")]')).toBeHidden();
   }
 
   async searchWithSearchBar(input: string) {
@@ -24,11 +28,11 @@ export class HomePage {
 
   async filterByCatalog(category: string, subcategoryLink: string) {
     await this.page
-      .locator(`//*[@class="content"]//span[text()="${category}"]`)
+      .locator(`//div[@class="content"]//button[@class="nav-link"]/span[text()="${category}"]`)
       .hover();
-    await this.page
+      await this.page
       .locator(
-        `//*[@class="content"]//a[@href="${subcategoryLink}"]`
+        `//div[@class="content"]//*[@class="catalog-box__item"]//a[contains(@href, "${subcategoryLink}")]`
       )
       .click();
   }

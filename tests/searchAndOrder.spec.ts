@@ -18,14 +18,16 @@ test("Order product with filtering", async ({
   checkoutPage,
 }) => {
   await homePage.navigateToBaseURL();
-  await homePage.clickOnCityModal("Так, вірно");
+  await homePage.confirmCityModal();
   await homePage.searchWithSearchBar("Ігровий стіл DXRacer");
 
+  await searchResultsPage.checkHeader("Ігровий стіл DXRacer");
   await searchResultsPage.clickOnSearchResult("Ігровий стіл DXRacer");
 
   await productPage.clickBuyButton();
   await productPage.clickCheckoutButton();
 
+  await checkoutPage.checkProductInBucket("Ігровий стіл DXRacer");
   await checkoutPage.fillSurname("Druzhchenko");
   await checkoutPage.fillName("Ivan");
 });
