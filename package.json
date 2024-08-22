@@ -1,5 +1,5 @@
 {
-  "name": "brain-playwright-automation",
+  "name": "telemart-playwright-automation",
   "version": "1.0.0",
   "description": "Playwright + TS automation pet-project",
   "main": "index.js",
@@ -16,7 +16,11 @@
   },
   "homepage": "https://github.com/IvanDruzhchenk0/brain-playwright-automation#readme",
   "devDependencies": {
-    "@playwright/test": "^1.44.1",
+    "@playwright/test": "^1.46.0",
     "@types/node": "^20.12.12"
+  },
+  "dependencies": {
+    "playwright": "^1.46.0",
+    "typescript": "^5.5.3"
   }
 }
