@@ -45,6 +45,22 @@ export class CatalogPage {
       )
       .click();
   }
+
+  async compareNthItem(buttonNumbers: Array<number>) {
+    for (const button of buttonNumbers) {
+      await this.page
+        .locator(
+          '//div[@class="product-btns"]/button[contains(@class, "btn_compare")]'
+        )
+        .nth(button)
+        .click();
+      await this.page
+        .locator(
+          `//div[contains(text(), "Товар додан")]/parent::*/preceding-sibling::*/button`
+        )
+        .click();
+    }
+  }
 }
 
 export enum Filters {

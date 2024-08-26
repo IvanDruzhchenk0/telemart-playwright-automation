@@ -13,11 +13,12 @@ export class HomePage {
 
   async confirmCityModal() {
     await this.page
-      .locator(`//*[@role="tooltip"]//button[contains(text(), "Так, вірно")]`)
+      .locator('//*[@role="tooltip"]//button[contains(text(), "Так, вірно")]')
       .click();
     await expect(
       this.page.locator('//div[@class="header-select-city"]/button/span')
     ).toHaveText("Київ");
+    await expect(this.page.locator('//*[@role="tooltip"]//button[contains(text(), "Так, вірно")]')).toBeHidden();
   }
 
   async searchWithSearchBar(input: string) {
@@ -27,11 +28,11 @@ export class HomePage {
 
   async filterByCatalog(category: string, subcategoryLink: string) {
     await this.page
-      .locator(`//*[@class="content"]//span[contains(text(), "${category}")]`)
+      .locator(`//div[@class="content"]//button[@class="nav-link"]/span[text()="${category}"]`)
       .hover();
-    await this.page
+      await this.page
       .locator(
-        `//*[@class="content"]//a[contains(@href, "${subcategoryLink}")]`
+        `//div[@class="content"]//*[@class="catalog-box__item"]//a[contains(@href, "${subcategoryLink}")]`
       )
       .click();
   }
@@ -50,4 +51,9 @@ export class HomePage {
       )
       .click();
   }
+}
+
+export enum MainFilter {
+  Components = 'Комплектуючі',
+  PC = 'Комп\'ютери'
 }

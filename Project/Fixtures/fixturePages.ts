@@ -1,11 +1,14 @@
 import { test as base } from '@playwright/test';
 import { CatalogPage } from '../Pages/CatalogPage';
 import { CheckOutPage } from '../Pages/CheckoutPage';
-import { FilteringResultsPage } from '../Pages/filteringResultsPage';
+import { FilteringResultsPage } from '../Pages/FilteringResultsPage';
 import { HomePage } from '../Pages/HomePage';
 import { ProductPage } from '../Pages/ProductPage';
 import { PromotionPage } from '../Pages/PromotionPage';
 import { SearchResultsPage } from '../Pages/SearchResultsPage';
+import { ComparisonPage } from '../Pages/ComparisonPage';
+import { HeaderComponent } from '../Components/headerComponent';
+import { ProfilePage } from '../Pages/ProfilePage';
 
 type Pages = {
     catalogPage: CatalogPage;
@@ -15,10 +18,16 @@ type Pages = {
     productPage: ProductPage;
     promotionPage: PromotionPage;
     searchResultsPage: SearchResultsPage;
+    comparisonPage: ComparisonPage;
+    profilePage: ProfilePage;
+}
+
+type Components = {
+    headerComponent: HeaderComponent;
 }
 
 
-export const test = base.extend<Pages>({ 
+export const test = base.extend<Pages & Components> ({ 
     catalogPage: ({page}, use) => {
         const catalogPage = new CatalogPage(page);
         use(catalogPage);
@@ -46,6 +55,18 @@ export const test = base.extend<Pages>({
     searchResultsPage: ({page}, use) => {
         const searchResultsPage = new SearchResultsPage(page);
         use(searchResultsPage);
+    },
+    headerComponent: ({page}, use) => {
+        const headerComponent = new HeaderComponent(page);
+        use(headerComponent);
+    }, 
+    comparisonPage: ({page}, use) => {
+        const comparisonPage = new ComparisonPage(page);
+        use(comparisonPage);
+    },
+    profilePage: ({page}, use) => {
+        const profilePage = new ProfilePage(page);
+        use(profilePage);
     }
 
 })
