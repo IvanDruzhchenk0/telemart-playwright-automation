@@ -55,5 +55,5 @@ export class HomePage {
 
 export enum MainFilter {
   Components = 'Комплектуючі',
-  PC = 'Комп\'юьери'
+  PC = 'Комп\'ютери'
 }
