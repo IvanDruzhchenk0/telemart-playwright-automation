@@ -52,3 +52,8 @@ export class HomePage {
       .click();
   }
 }
+
+export enum MainFilter {
+  Components = 'Комплектуючі',
+  PC = 'Комп\'юьери'
+}

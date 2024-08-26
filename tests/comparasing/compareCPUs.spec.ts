@@ -15,6 +15,7 @@
 
 import { test } from "../../Project/Fixtures/fixturePages";
 import { SectionTitles, CategoryToCompare } from "../../Project/Pages/ComparisonPage";
+import { MainFilter } from "../../Project/Pages/HomePage";
 
 test('Compare CPUs', async ({ homePage, catalogPage, headerComponent, comparisonPage }) => {
 
@@ -26,7 +27,7 @@ await homePage.navigateToBaseURL();
 await homePage.confirmCityModal();
 
 await homePage.filterByCatalog(
-    "Комплектуючі",
+    MainFilter.Components,
     "/ua/processor/"
   );
 
