@@ -26,14 +26,26 @@ export class CatalogPage {
 
   async applyFilter(filterID: string) {
     await this.page.locator(`label[for="${filterID}"]`).check();
-    await this.page.waitForResponse(response => response.url().includes('https://telemart.ua/ua/monitors/filter/') && response.status() === 200 && response.request().method() === 'GET', {timeout: 6000});
+    await this.page.waitForResponse(
+      (response) =>
+        response.url().includes("https://telemart.ua/ua/monitors/filter/") &&
+        response.status() === 200 &&
+        response.request().method() === "GET",
+      { timeout: 6000 }
+    );
     await expect(this.page.locator(`label[for="${filterID}"]`)).toBeChecked();
   }
 
   async applyMultipleFilters(listOfFilters: Array<string>) {
     for (const filter of listOfFilters) {
       await this.page.locator(`label[for="${filter}"]`).check();
-      await this.page.waitForResponse(response => response.url().includes('https://telemart.ua/ua/monitors/filter/') && response.status() === 200 && response.request().method() === 'GET', {timeout: 6000});
+      await this.page.waitForResponse(
+        (response) =>
+          response.url().includes("https://telemart.ua/ua/monitors/filter/") &&
+          response.status() === 200 &&
+          response.request().method() === "GET",
+        { timeout: 6000 }
+      );
       await expect(this.page.locator(`label[for="${filter}"]`)).toBeChecked();
     }
   }
@@ -60,6 +72,10 @@ export class CatalogPage {
         )
         .click();
     }
+  }
+
+  async checkURL(URL: string) {
+    await expect(this.page).toHaveURL(URL);
   }
 }
 

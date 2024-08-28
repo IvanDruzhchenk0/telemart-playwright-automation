@@ -9,6 +9,7 @@ import { SearchResultsPage } from '../Pages/SearchResultsPage';
 import { ComparisonPage } from '../Pages/ComparisonPage';
 import { HeaderComponent } from '../Components/headerComponent';
 import { ProfilePage } from '../Pages/ProfilePage';
+import { ConstructorPage } from '../Pages/ConstructorPage';
 
 type Pages = {
     catalogPage: CatalogPage;
@@ -20,6 +21,7 @@ type Pages = {
     searchResultsPage: SearchResultsPage;
     comparisonPage: ComparisonPage;
     profilePage: ProfilePage;
+    constructorPage: ConstructorPage;
 }
 
 type Components = {
@@ -67,6 +69,9 @@ export const test = base.extend<Pages & Components> ({
     profilePage: ({page}, use) => {
         const profilePage = new ProfilePage(page);
         use(profilePage);
+    },
+    constructorPage: ({page}, use) => {
+        const constructorPage = new ConstructorPage(page);
+        use(constructorPage);
     }
-
 })
