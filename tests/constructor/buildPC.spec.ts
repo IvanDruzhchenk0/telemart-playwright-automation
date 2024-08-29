@@ -3,20 +3,16 @@ import {
   callReason,
   headerTextContent,
   componentsSections,
+  constructorButton,
+  buildPCButton,
+  buyButton,
+  getConsultationButton,
+  assembledPCs
 } from "../../Project/Pages/ConstructorPage";
 import { headerText } from "../../Project/Pages/FilteringResultsPage";
 
 test.describe("Build PC page", () => {
-  const constructorButton =
-    '//div[@class="quick-main-links"]//a[contains(@href, "https://telemart.ua/ua/assembly-start.html")]';
-  const buildPCButton =
-    '//div[@class="before-config__left-col"]//a[contains(@href, "https://telemart.ua/ua/assembly/clear")]';
-  const buyButton =
-    '//div[@class="configuration__info-row"]//button[contains(text(), "Купити")]';
-  const getConsultationButton =
-    '//div[@id="assembly"]//div[@data-bs-target="#modalRequestConsultation"]';
-  const assembledPCs =
-    '//div[@id="assembly"]//a[contains(@href, "https://telemart.ua/ua/pc/")]';
+
   const modalFormData = ["Test", "0000000000", "10000", callReason.newPC];
   const sectionTitles = [
     "Послуги",

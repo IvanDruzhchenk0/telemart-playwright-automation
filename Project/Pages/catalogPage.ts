@@ -28,7 +28,7 @@ export class CatalogPage {
     await this.page.locator(`label[for="${filterID}"]`).check();
     await this.page.waitForResponse(
       (response) =>
-        response.url().includes("https://telemart.ua/ua/monitors/filter/") &&
+        response.url().includes("/filter/") &&
         response.status() === 200 &&
         response.request().method() === "GET",
       { timeout: 6000 }
@@ -41,7 +41,7 @@ export class CatalogPage {
       await this.page.locator(`label[for="${filter}"]`).check();
       await this.page.waitForResponse(
         (response) =>
-          response.url().includes("https://telemart.ua/ua/monitors/filter/") &&
+          response.url().includes("/filter/") &&
           response.status() === 200 &&
           response.request().method() === "GET",
         { timeout: 6000 }

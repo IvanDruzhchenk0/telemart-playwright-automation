@@ -1,5 +1,15 @@
 import { Page, expect } from "@playwright/test";
-import { request } from "http";
+
+export const constructorButton =
+  '//div[@class="quick-main-links"]//a[contains(@href, "https://telemart.ua/ua/assembly-start.html")]';
+export const buildPCButton =
+  '//div[@class="before-config__left-col"]//a[contains(@href, "https://telemart.ua/ua/assembly/clear")]';
+export const buyButton =
+  '//div[@class="configuration__info-row"]//button[contains(text(), "Купити")]';
+export const getConsultationButton =
+  '//div[@class="content"]//*[@data-bs-target="#modalRequestConsultation"]';
+export const assembledPCs =
+  '//div[@id="assembly"]//a[contains(@href, "https://telemart.ua/ua/pc/")]';
 
 export class ConstructorPage {
   page: Page;
@@ -11,7 +21,7 @@ export class ConstructorPage {
   async checkSections() {
     await expect(
       this.page.locator(
-        '//div[@class="before-config__left-col"]/div[@class="before-config__txt"]/div[text()="Конфігуратор ПК"]'
+        '//div[@class="before-config__left-col"]//div[text()="Конфігуратор ПК"]'
       )
     ).toBeVisible();
     await expect(
