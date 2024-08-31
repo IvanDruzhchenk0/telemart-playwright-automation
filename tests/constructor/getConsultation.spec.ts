@@ -3,7 +3,9 @@ import { callReason, constructorButton, getConsultationButton } from "../../Proj
 
 test("Get consultation: Constructor page", async ({
   homePage,
-  constructorPage
+  constructorPage,
+  faqComponent,
+  consultationModal
 }) => {
   const modalFormData = ["Test", "0000000000", "10000", callReason.newPC];
 
@@ -12,8 +14,8 @@ test("Get consultation: Constructor page", async ({
   await homePage.clickButton(constructorButton);
 
   await constructorPage.checkSections();
-  await constructorPage.checkFAQ();
+  await faqComponent.checkFAQ();
 
   await constructorPage.clickButton(getConsultationButton);
-  await constructorPage.getConsultation(modalFormData);
+  await consultationModal.getConsultation(modalFormData);
 });
