@@ -1,15 +1,10 @@
 import { test } from "../../Project/Fixtures/fixturePages";
 import {
-  callReason,
-  constructorButton,
-  buildPCButton,
-  getConsultationButton,
+  callReason
 } from "../../Project/Pages/ConstructorPage";
 import {
   headerTextContent,
-  componentsSections,
-  buyButton,
-  assembledPCs,
+  componentsSections
 } from "../../Project/Pages/ComputerConfiguratorPage";
 import { headerText } from "../../Project/Pages/FilteringResultsPage";
 
@@ -39,17 +34,16 @@ test.describe("Build PC page", () => {
 
   test("Build PC page: Get consultation", async ({
     homePage,
-    constructorPage,
-    consultationModal,
+    constructorPage
   }) => {
     await homePage.navigateToBaseURL();
     await homePage.confirmCityModal();
-    await homePage.clickButton(constructorButton);
+    await homePage.clickButton(homePage.constructorButton);
 
-    await constructorPage.clickButton(buildPCButton);
+    await constructorPage.clickButton(constructorPage.buildPCButton);
     await constructorPage.checkHeader(headerTextContent.configurePC);
-    await constructorPage.clickButton(getConsultationButton);
-    await consultationModal.getConsultation(modalFormData);
+    await constructorPage.clickButton(constructorPage.getConsultationButton);
+    await constructorPage.consultationModal.getConsultation(modalFormData);
   });
 
   test("Build PC page: assembled PCs", async ({
@@ -61,10 +55,10 @@ test.describe("Build PC page", () => {
   }) => {
     await homePage.navigateToBaseURL();
     await homePage.confirmCityModal();
-    await homePage.clickButton(constructorButton);
+    await homePage.clickButton(homePage.constructorButton);
 
-    await constructorPage.clickButton(buildPCButton);
-    await computerConfiguratorPage.clickButton(assembledPCs);
+    await constructorPage.clickButton(constructorPage.buildPCButton);
+    await computerConfiguratorPage.clickButton(computerConfiguratorPage.assembledPCs);
     await filteringResultsPage.checkHeader(headerText.PCs);
     await catalogPage.checkURL("https://telemart.ua/ua/pc/");
   });
@@ -77,16 +71,16 @@ test.describe("Build PC page", () => {
   }) => {
     await homePage.navigateToBaseURL();
     await homePage.confirmCityModal();
-    await homePage.clickButton(constructorButton);
+    await homePage.clickButton(homePage.constructorButton);
 
-    await constructorPage.clickButton(buildPCButton);
+    await constructorPage.clickButton(constructorPage.buildPCButton);
     await computerConfiguratorPage.checkNumberOfSections(4);
     await computerConfiguratorPage.checkNumberOfItems(35);
     await computerConfiguratorPage.checkSectionTitles(sectionTitles);
 
     await computerConfiguratorPage.addComponents(componentsTitles);
     await computerConfiguratorPage.checkConstructionCompleted();
-    await computerConfiguratorPage.clickButton(buyButton);
+    await computerConfiguratorPage.clickButton(computerConfiguratorPage.buyButton);
     await computerConfiguratorPage.submitBuyModal();
 
     await checkoutPage.checkURL("https://telemart.ua/ua/order/");

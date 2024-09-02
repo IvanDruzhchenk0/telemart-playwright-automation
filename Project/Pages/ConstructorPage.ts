@@ -1,18 +1,20 @@
 import { Page, expect } from "@playwright/test";
 
-export const constructorButton =
-  '//div[@class="quick-main-links"]//a[contains(@href, "https://telemart.ua/ua/assembly-start.html")]';
-export const buildPCButton =
-  '//div[@class="before-config__left-col"]//a[contains(@href, "https://telemart.ua/ua/assembly/clear")]';
-export const getConsultationButton =
-  '//div[@class="content"]//*[@data-bs-target="#modalRequestConsultation"]';
-
 export class ConstructorPage {
   page: Page;
+  faqComponent: FAQComponent;
+  consultationModal: ConsultationModal;
 
   constructor(page: Page) {
     this.page = page;
+    this.faqComponent = new FAQComponent(page);
+    this.consultationModal = new ConsultationModal(page);
   }
+
+  buildPCButton =
+  '//div[@class="before-config__left-col"]//a[contains(@href, "https://telemart.ua/ua/assembly/clear")]';
+  getConsultationButton =
+  '//div[@class="content"]//*[@data-bs-target="#modalRequestConsultation"]';
 
   async checkSections() {
     await expect(
@@ -38,11 +40,10 @@ export class ConstructorPage {
   }
 }
 
-export class FAQComponent extends ConstructorPage {
+export class FAQComponent {
   page: Page;
 
   constructor(page: Page) {
-    super(page);
     this.page = page;
   }
 
@@ -60,11 +61,10 @@ export class FAQComponent extends ConstructorPage {
   }
 }
 
-export class ConsultationModal extends ConstructorPage {
+export class ConsultationModal {
 page: Page;
 
   constructor(page: Page) {
-    super(page);
     this.page = page;
   }
 

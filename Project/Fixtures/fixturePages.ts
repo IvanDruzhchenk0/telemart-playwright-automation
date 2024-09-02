@@ -9,7 +9,7 @@ import { SearchResultsPage } from '../Pages/SearchResultsPage';
 import { ComparisonPage } from '../Pages/ComparisonPage';
 import { HeaderComponent } from '../Components/headerComponent';
 import { ProfilePage } from '../Pages/ProfilePage';
-import { ConstructorPage, FAQComponent, ConsultationModal } from '../Pages/ConstructorPage';
+import { ConstructorPage } from '../Pages/ConstructorPage';
 import { ComputerConfiguratorPage } from '../Pages/ComputerConfiguratorPage';
 
 
@@ -24,8 +24,6 @@ type Pages = {
     comparisonPage: ComparisonPage;
     profilePage: ProfilePage;
     constructorPage: ConstructorPage;
-    faqComponent: FAQComponent;
-    consultationModal: ConsultationModal;
     computerConfiguratorPage: ComputerConfiguratorPage;
 }
 
@@ -78,14 +76,6 @@ export const test = base.extend<Pages & Components> ({
     constructorPage: ({page}, use) => {
         const constructorPage = new ConstructorPage(page);
         use(constructorPage);
-    },
-    faqComponent: ({page}, use) => {
-        const faqComponent = new FAQComponent(page);
-        use(faqComponent);
-    },
-    consultationModal: ({page}, use) => {
-        const consultationModal = new ConsultationModal(page);
-        use(consultationModal);
     },
     computerConfiguratorPage: ({page}, use) => {
         const computerConfiguratorPage = new ComputerConfiguratorPage(page);

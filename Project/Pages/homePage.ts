@@ -7,6 +7,9 @@ export class HomePage {
     this.page = page;
   }
 
+  constructorButton =
+  '//div[@class="quick-main-links"]//a[contains(@href, "https://telemart.ua/ua/assembly-start.html")]';
+
   async navigateToBaseURL() {
     await this.page.goto("");
   }

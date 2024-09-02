@@ -1,11 +1,6 @@
 import { Page, expect } from "@playwright/test";
 import { ConstructorPage } from "./ConstructorPage";
 
-export const assembledPCs =
-  '//div[@id="assembly"]//a[contains(@href, "https://telemart.ua/ua/pc/")]';
-export const buyButton =
-  '//div[@class="configuration__info-row"]//button[contains(text(), "Купити")]';
-
 export class ComputerConfiguratorPage extends ConstructorPage{
     page: Page;
 
@@ -13,6 +8,11 @@ export class ComputerConfiguratorPage extends ConstructorPage{
       super(page);
       this.page = page;
     }
+
+  assembledPCs =
+  '//div[@id="assembly"]//a[contains(@href, "https://telemart.ua/ua/pc/")]';
+  buyButton =
+  '//div[@class="configuration__info-row"]//button[contains(text(), "Купити")]';
 
   async checkNumberOfSections(number: number) {
     const section = this.page.locator(
