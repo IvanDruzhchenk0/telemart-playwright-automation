@@ -14,8 +14,20 @@ export class FilteringResultsPage {
       .click();
   }
 
-  async checkFiltersApplication(numberOfFilters: number){
-    const filterSelection = this.page.locator('//div[@class="category-main-container"]//div[@class="filter-selected-items__list"]/button');
+  async checkFiltersApplication(numberOfFilters: number) {
+    const filterSelection = this.page.locator(
+      '//div[@class="category-main-container"]//div[@class="filter-selected-items__list"]/button'
+    );
     await expect(filterSelection).toHaveCount(numberOfFilters);
   }
+
+  async checkHeader(text: string) {
+    await expect(
+      this.page.locator('h1[class="page-main-header"]')
+    ).toContainText(text);
+  }
+}
+
+export enum headerText {
+  PCs = "Комп'ютери",
 }

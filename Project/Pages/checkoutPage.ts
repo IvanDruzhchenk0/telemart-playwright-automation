@@ -7,6 +7,10 @@ export class CheckOutPage {
     this.page = page;
   }
 
+  async checkURL(URL: string) {
+    await expect(this.page).toHaveURL(URL);
+  }
+
   async checkProductInBucket(productName: string) {
     await expect(
       this.page.locator(
@@ -17,11 +21,15 @@ export class CheckOutPage {
 
   async fillSurname(surname: string) {
     await this.page.locator('[id="customerLastname"]').fill(surname);
-    await expect(this.page.locator(`//input[@id="customerLastname"][@value='${surname}']`)).toBeVisible();
+    await expect(
+      this.page.locator(`//input[@id="customerLastname"][@value='${surname}']`)
+    ).toBeVisible();
   }
 
   async fillName(name: string) {
     await this.page.locator('[id="customerFirstname"]').fill(name);
-    await expect(this.page.locator(`//input[@id="customerFirstname"][@value='${name}']`)).toBeVisible();
+    await expect(
+      this.page.locator(`//input[@id="customerFirstname"][@value='${name}']`)
+    ).toBeVisible();
   }
 }
